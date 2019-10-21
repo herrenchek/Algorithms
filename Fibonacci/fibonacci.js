@@ -1,4 +1,5 @@
 // Iteratively.
+// Big O O(n) time | O(1) space
 function fibonacci(nth) {
     const nums = [0, 1];
     let i = 2;
@@ -21,6 +22,7 @@ console.log("\n");
 
 
 // Recursively.
+// Big O O(2^n) time | O(n) space
 const nthRecursive = nth => {
 // A recursive function is a function that calls itself during its execution.
     // Base cases prevent the function from looping infinitely.
@@ -33,3 +35,19 @@ console.log(nthRecursive(7)); // 13
 console.log(nthRecursive(0)); // 0
 console.log(nthRecursive(1)); // 1
 console.log(nthRecursive(5)); // 5
+console.log("\n");
+
+// More efficient recursion for time.
+// Big O O(n) time | O(n) space
+const nthFibMemo = (n, memo = { 0: 0, 1: 1}) => {
+    if(n in memo) {
+        return memo[n];
+    }
+    memo[n] = nthFibMemo(n - 2, memo) + nthFibMemo(n -1, memo);
+    return memo[n];
+}
+
+console.log(nthFibMemo(7)); // 13
+console.log(nthFibMemo(0)); // 0
+console.log(nthFibMemo(1)); // 1
+console.log(nthFibMemo(5)); // 5
